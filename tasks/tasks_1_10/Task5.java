@@ -11,16 +11,38 @@ public class Task5 {
 
 	@Test
 	public void test() {
-		int n = 10, result = n, rest = -1;
+		long n = 20, result = 0;
+		long max = calculateFactorial(n);
 
-		while (rest != 0) {
-			for (int i = n; i > 1; i++) {
-				if (result % n != 0) {
-					break;
-				}
-				
-				rest = result / n;
+		for (long i = n; i < max; i += n) {
+			if (checkNumber(i, n)) {
+				result = i;
+				break;
 			}
 		}
+
+		System.out.println("Result: " + result);
+
+	}
+
+	private long calculateFactorial(long n) {
+		long result = 1;
+		if (n == 0) {
+			return 1;
+		}
+		for (int i = 2; i <= n; i++) {
+			result *= i;
+		}
+
+		return result;
+	}
+
+	private boolean checkNumber(long number, long basis) {
+		for (long i = basis; i > 1; i--) {
+			if (number % i != 0) {
+				return false;
+			}
+		}
+		return true;
 	}
 }
